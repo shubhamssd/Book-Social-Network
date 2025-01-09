@@ -86,4 +86,21 @@ public class AuthenticationService {
         }
         return codeBuilder.toString();
     }
+
+     public AuthenticateResponse authenticate(AuthenticationRequest request) {
+        var auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        var claims = new HashMap<String, Object>();
+        var user = ((User) auth.getPrincipal());
+        claims.put("FullName", user.fullName());
+        var jwtToken = jwtService.generateToken(claims, user);
+        return AuthenticateResponse
+                .builder()
+                .token(jwtToken)
+                .build();
+    }
 }
