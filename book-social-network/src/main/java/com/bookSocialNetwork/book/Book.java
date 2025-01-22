@@ -2,6 +2,7 @@ package com.bookSocialNetwork.book;
 
 import com.bookSocialNetwork.common.BaseEntity;
 import com.bookSocialNetwork.feedBack.FeedBack;
+import com.bookSocialNetwork.history.BookTransactionHistory;
 import com.bookSocialNetwork.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
