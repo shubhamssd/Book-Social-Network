@@ -1,6 +1,7 @@
 package com.bookSocialNetwork.user;
 //1
 import com.bookSocialNetwork.book.Book;
+import com.bookSocialNetwork.history.BookTransactionHistory;
 import com.bookSocialNetwork.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -47,7 +48,6 @@ public class User implements UserDetails, Principal {
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
 
-    
     @OneToMany(mappedBy = "user")
     private List<BookTransactionHistory> histories;
 
