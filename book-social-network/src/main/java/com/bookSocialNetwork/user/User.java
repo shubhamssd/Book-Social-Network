@@ -1,5 +1,6 @@
 package com.bookSocialNetwork.user;
 //1
+import com.bookSocialNetwork.book.Book;
 import com.bookSocialNetwork.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,6 +43,9 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
 
 
     @CreatedDate
@@ -97,7 +101,7 @@ public class User implements UserDetails, Principal {
     }
 
 
-    private String fullName(){
+    public String fullName(){
         return firstname + " "+ lastname;
     }
 }
