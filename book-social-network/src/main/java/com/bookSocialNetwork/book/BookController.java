@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("books")
@@ -50,6 +47,15 @@ public class BookController {
             Authentication connectedUser
     ){
         return ResponseEntity.ok(service.findAllBooksOwner(page, size, connectedUser));
+    }
+
+     @GetMapping("/borrowed")
+    public ResponseEntity<PageResponse<BorrowedBookResponse>> findAllBorrowedBooks(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication connectedUser
+    ){
+        return ResponseEntity.ok(service.findAllBorrowedBooks(page, size, connectedUser));
     }
 
 
