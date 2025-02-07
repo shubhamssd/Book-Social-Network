@@ -17,4 +17,12 @@ public class FeedbackMapper {
                 )
                 .build();
     }
+
+     public FeedbackResponse toFeedbackResponse(FeedBack feedback, Integer id) {
+        return FeedbackResponse.builder()
+                .note(feedback.getNote())
+                .comment(feedback.getComment())
+                .ownFeedback(Objects.equals(feedback.getCreatedBy(), id))
+                .build();
+    }
 }
