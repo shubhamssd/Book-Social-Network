@@ -1,4 +1,6 @@
 package com.bookSocialNetwork.book;
+
+import com.bookSocialNetwork.file.FileUtils;
 import com.bookSocialNetwork.history.BookTransactionHistory;
 
 public class BookMapper {
@@ -23,7 +25,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-                //.cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
